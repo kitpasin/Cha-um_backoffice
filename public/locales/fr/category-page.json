@@ -1,0 +1,27 @@
+{
+    "selectPageControlNone": "None",
+    "selectPageControl": "Page Control",
+    "btnAddCategory": "Add Category",
+    "categoryH1": "Category",
+    "categoryAdd": "Add",
+    "categoryEdit": "Edit",
+    "Create": "Create",
+    "Add": "Add",
+    "ModalAddCategoryh2":"Add Category",
+    "Fetch": "Fetch",
+    "Edit": "Edit",
+    "ModalEditCategoryh2":"Edit Category",
+    "Delete": "Delete",
+    "Save": "Save",
+    "TabAll": "All",
+    "TabHidden": "Hidden",
+    "ModalInfoImage":"Image Info",
+    "ModalDetail":"Category Detail",
+    "ModalPosition":"Position",
+    "ModalDateDisplay":"Display Date",
+    "ModalDateHidden":"Hidden Date",
+    "ModalSlcCtronrolPage":"Page Control",
+    "ModalPriority":"Priority",
+    "None": "None"
+}
+
