@@ -10,7 +10,7 @@ import { appActions } from "../../store/app-slice";
 import { getCategory, getSubCategory } from "../../services/category.service";
 import SubModalEditCategory from "./subcategory-modal/subcate-edit-modal";
 
-import "./subcategory.scss";
+import "../category/category.scss";
 import { faAdd, faSitemap, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
