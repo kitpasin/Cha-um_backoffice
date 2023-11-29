@@ -29,7 +29,7 @@ export const svUpdateDesign = (id, formData) => {
 }
 
 export const svDeleteDesignByToken = (token,language) => {
-  return axios.delete(`portfolio/${language}/${token}`).then( 
+  return axios.delete(`design/${language}/${token}`).then( 
     (res) =>  { return { status: true, description: res.data.description }},
     (error) => { return { status: false, description: (!error.response.data)?"Something went wrong.": error.response.data.description } }
   )

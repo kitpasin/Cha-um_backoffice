@@ -186,7 +186,6 @@ const ModalAddDesign = (props) => {
       size: addData.size === "",
       status: addData.status === "",
       slug: addData.slug === "",
-      category: radioResult === null,
     });
 
     if (
@@ -195,7 +194,6 @@ const ModalAddDesign = (props) => {
       addData.address === "" ||
       addData.size === "" ||
       addData.status === "" ||
-      radioResult === null ||
       isFetching
     ) {
       return false;

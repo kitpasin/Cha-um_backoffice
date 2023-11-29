@@ -91,8 +91,6 @@ const DesignPage = () => {
     return matchesName && matchesCate;
   });
 
-  console.log(designsList)
-
   return (
     <section id="design-page">
       <HeadPageComponent
