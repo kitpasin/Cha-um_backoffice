@@ -56,14 +56,13 @@ function MessagePage() {
   const [isRowDisplay, setIsRowDisplay] = useState(false);
   const [refreshData, setRefreshData] = useState(0);
   const [messageData, setMessageData] = useState([]);
-  const [selectedName, setSelectedName] = useState("")
+  const [selectedName, setSelectedName] = useState("");
 
   const [filteredData, setFilteredData] = useState([]);
   const [totalData, setTotalData] = useState(0);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [limited, setLimited] = useState({ begin: 0, end: rowsPerPage });
-  
 
   useEffect(() => {
     setMessageData([]);
@@ -123,8 +122,8 @@ function MessagePage() {
 
   const letters = filteredData?.filter((data) => {
     const matchesName = selectedName ? data.name === selectedName : true;
-    return matchesName; 
-  })
+    return matchesName;
+  });
 
   console.log(selectedName);
   return (
@@ -149,22 +148,16 @@ function MessagePage() {
             </h2>
           </div>
           <Autocomplete
-              disablePortal
-              options={messageData.map((data) => data.name)}
-              onChange={(e, newValue) => {
-                const name = messageData.find(
-                  (data) => data.name === newValue
-                );
-                setSelectedName(
-                  name ? newValue : null
-                );
-              }}
-              sx={{ width: 300, marginTop: "1rem" }}
-              size="small"
-              renderInput={(params) => (
-                <TextField {...params} label="ชื่อ" />
-              )}
-            />
+            disablePortal
+            options={messageData.map((data) => data.name)}
+            onChange={(e, newValue) => {
+              const name = messageData.find((data) => data.name === newValue);
+              setSelectedName(name ? newValue : null);
+            }}
+            sx={{ width: 300, marginTop: "1rem" }}
+            size="small"
+            renderInput={(params) => <TextField {...params} label="ชื่อ" />}
+          />
         </div>
         <div style={{ padding: "0.75rem" }}>
           <div style={{ paddingInline: "0.5rem" }}>
@@ -204,15 +197,18 @@ function MessagePage() {
                           {data.message}
                         </StyledTableCell>
                         <StyledTableCell align="left">
-                        {new Date(data.updated_at).toLocaleString('en-US', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                          second: '2-digit',
-                          timeZone: 'Asia/Bangkok' // Adjust the timeZone according to your needs
-                        })}
+                          {new Date(data.updated_at).toLocaleString(
+                            "th-TH-u-nu",
+                            {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              second: "2-digit",
+                              timeZone: "Asia/Bangkok",
+                            }
+                          )}
                         </StyledTableCell>
                         {isSuerperAdmin && (
                           <StyledTableCell
