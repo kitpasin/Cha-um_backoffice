@@ -37,7 +37,7 @@ const CategoryTab = (props) => {
   const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
-    const result = categoryData.filter((c) => {
+    const result = categoryData?.filter((c) => {
       c.cate_thumbnail = (c.cate_thumbnail)?c.cate_thumbnail:""
       if(tabSelect === "0") {
         return c
@@ -52,8 +52,8 @@ const CategoryTab = (props) => {
       } 
     })
        
-    props.setTotalData(result.length)
-    setFilteredData(result.slice(limited.begin, limited.end))
+    props.setTotalData(result?.length)
+    setFilteredData(result?.slice(limited.begin, limited.end))
 
   }, [tabSelect, categoryData, page, rowsPerPage]);
 
@@ -97,7 +97,7 @@ const CategoryTab = (props) => {
       showCancelButton: true,
       cancelButtonText: "Cancel"
     }).then(result => {
-      if(result.isConfirmed){
+      if(result?.isConfirmed){
         svDeleteCategoryByToken(item.id,item.language).then(res => {
           SwalUI({status: res.status, description: res.description})
           if(res.status) {
@@ -110,25 +110,23 @@ const CategoryTab = (props) => {
    
   }
 
-  const filteredCateData = filteredData.filter((cate) => {
+  const filteredCateData = filteredData?.filter((cate) => {
     const matchesName = selectedCateName ? cate.cate_title === selectedCateName : true;
     return matchesName;
   })
-
-  console.log(categoryData)
 
   return (
     <Box className="category-tab-section" sx={{ width: '100%' }}>
       <TabContext value={tabSelect}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-              {tabLists.map((tab) => ( <Tab className="category-tab-header" value={tab.value} key={tab.value} icon={tab.icon} label={tab.title} /> ))}
+              {tabLists?.map((tab) => ( <Tab className="category-tab-header" value={tab.value} key={tab.value} icon={tab.icon} label={tab.title} /> ))}
           </TabList>
           </Box>
-          {tabLists.map((tab) =>  (
+          {tabLists?.map((tab) =>  (
             <TabPanel  className={`category-tab-body ${(isRowDisplay)?"asRow":"asColumn"}`} value={tab.value} key={tab.value}>
               <div className="item-list"> 
-                {filteredCateData.map((item,index) => (
+                {filteredCateData?.map((item,index) => (
                   <ContentCardUI 
                     key={index} 
                     onAddClick={() => addHandler(item)}
@@ -168,7 +166,7 @@ const CategoryTab = (props) => {
                           <span>{item.editor}</span>
                         </Fragment>
                       )}
-                      <span className="fa-icon" title="language"><FontAwesomeIcon icon={faLanguage} /></span>
+                        <span className="fa-icon" title="language"><FontAwesomeIcon icon={faLanguage} /></span>
                       <b>{item.language.toUpperCase()}</b> 
                       <span className="fa-icon" title="priority"><FontAwesomeIcon icon={faArrowDownShortWide} /><b>{item.cate_priority}</b> </span>
                     </p>   

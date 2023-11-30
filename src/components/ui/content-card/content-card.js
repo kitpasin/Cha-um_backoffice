@@ -9,12 +9,12 @@ import Swal from "sweetalert2";
 
 import './content-card.scss';
 
-
 const ContentCardUI = (props) => {
     const { data, isRowDisplay, onAddClick, onEditClick, onDeleteClick, mainContent = false } = props
     const { t } = useTranslation('slide-page')
     const {uploadPath , language} = useSelector(state => state.app) 
     const userPermission = useSelector(state => state.auth.userPermission) 
+    const isSuerperAdmin = useSelector(state => state.auth.userPermission.superAdmin) 
  
     const previewImageHandler = (e, image) => {
         if(image !== "" && !e.target.classList.contains('src-error')) {
@@ -46,21 +46,24 @@ const ContentCardUI = (props) => {
                 </figure>
                 <div className='box-details'>{props.children}</div>
             </div>
-            <div className='box-right'>
+            {isSuerperAdmin && (
+
+                <div className='box-right'>
                 {data.language === language? (
-                     <div className='box-action'>
-                        <ButtonUI onClick={onEditClick} on="edit" className="btn-custom onEdit" icon={<FontAwesomeIcon icon={faEdit}/> }>{t("Edit")}</ButtonUI>
+                    <div className='box-action'>
+                        <ButtonUI onClick={onEditClick} on="edit" className="btn-custom onEdit" icon={<FontAwesomeIcon icon={faEdit}/> }>{t("แก้ไข")}</ButtonUI>
                         {(!mainContent)?(
-                            <ButtonUI onClick={onDeleteClick} on="delete" className="btn-custom onDelete" icon={<FontAwesomeIcon icon={faTrash}/>} >{t("Delete")}</ButtonUI> 
-                        ): userPermission.superAdmin && (
-                            <ButtonUI onClick={onDeleteClick} on="delete" className="btn-custom onDelete" icon={<FontAwesomeIcon icon={faTrash}/>} >{t("Delete")}</ButtonUI> 
+                            <ButtonUI onClick={onDeleteClick} on="delete" className="btn-custom onDelete" icon={<FontAwesomeIcon icon={faTrash}/>} >{t("ลบ")}</ButtonUI> 
+                            ): userPermission.superAdmin && (
+                                <ButtonUI onClick={onDeleteClick} on="delete" className="btn-custom onDelete" icon={<FontAwesomeIcon icon={faTrash}/>} >{t("ลบ")}</ButtonUI> 
                         )}
                      </div>
                 ):(
-                    <ButtonUI onClick={onAddClick}  on="add" className="btn-custom onAdd" icon={<FontAwesomeIcon icon={faPlus}/>} >{t("Add")}</ButtonUI>
+                    <ButtonUI onClick={onAddClick}  on="add" className="btn-custom onAdd" icon={<FontAwesomeIcon icon={faPlus}/>} >{t("เพิ่ม")}</ButtonUI>
                 )}
               
             </div>
+                    )}
         </div>
     )
 }

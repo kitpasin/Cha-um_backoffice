@@ -16,6 +16,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Autocomplete, TextField } from "@mui/material";
 
 const CategoryPage = () => {
+  const isSuerperAdmin = useSelector(
+    (state) => state.auth.userPermission.superAdmin
+  );
   const { t } = useTranslation(["category-page"]);
   const dispatch = useDispatch();
   const language = useSelector((state) => state.app.language);
@@ -28,6 +31,8 @@ const CategoryPage = () => {
   const [modalEditCate, setModalEditCate] = useState(false);
   const [refreshData, setRefreshData] = useState(0);
   const [selectedCateName, setSelectedName] = useState(undefined);
+
+  console.log(isSuerperAdmin);
 
   useEffect(() => {
     dispatch(appActions.isSpawnActive(true));
@@ -46,7 +51,7 @@ const CategoryPage = () => {
         breadcrums={[{ title: "หมวดหมู่หลัก", link: false }]}
       />
       <div className="card-control fixed-width">
-        <div style={{paddingBottom: "0"}} className="card-head">
+        <div style={{ paddingBottom: "0" }} className="card-head">
           <div className="head-action">
             <h2 className="head-title">
               <ButtonUI
@@ -63,21 +68,22 @@ const CategoryPage = () => {
               isRowDisplay={isRowDisplay}
               setIsRowDisplay={setIsRowDisplay}
             />
-
-            <ButtonUI
-              onClick={() => setModalAddCate(true)}
-              className="btn-add-category"
-              on="create"
-              isLoading={false}
-              icon={<FontAwesomeIcon icon={faAdd} />}
-            >
-              {t("เพิ่มหมวดหมู่หลัก")}
-            </ButtonUI>
+            {isSuerperAdmin && (
+              <ButtonUI
+                onClick={() => setModalAddCate(true)}
+                className="btn-add-category"
+                on="create"
+                isLoading={false}
+                icon={<FontAwesomeIcon icon={faAdd} />}
+              >
+                {t("เพิ่มหมวดหมู่หลัก")}
+              </ButtonUI>
+            )}
           </div>
           <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
             <Autocomplete
               disablePortal
-              options={categoryData.map((data) => data.cate_title)}
+              options={categoryData?.map((data) => data.cate_title)}
               onChange={(e, newValue) => {
                 const selectedName = categoryData.find(
                   (category) => category.cate_title === newValue
