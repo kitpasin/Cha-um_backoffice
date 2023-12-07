@@ -81,7 +81,7 @@ const url = window.location.origin + "/";
 
 const ModalEditProduct = (props) => {
   const { t } = useTranslation("product-page");
-  const { isEdit, isOpen, menuList, category, items } = props;
+  const { isEdit, isOpen, menuList, category, items, webContact } = props;
   const isSuperAdmin = useSelector(
     (state) => state.auth.userPermission.superAdmin
   );
@@ -604,28 +604,31 @@ const ModalEditProduct = (props) => {
                   size="small"
                 />
                 <TextField
-                  onChange={(e) =>
-                    setEditData({ ...editData, tel: e.target.value })
-                  }
-                  value={editData.tel}
+                  value={webContact.phone.value}
                   className="text-field-custom"
                   fullWidth={true}
                   error={editDataValid.tel}
                   id="cate-tel"
                   label="Tel"
                   size="small"
+                  inputProps={
+                    { readOnly: true, }
+                  }
                 />
                 <TextField
                   onChange={(e) =>
                     setEditData({ ...editData, line_id: e.target.value })
                   }
-                  value={editData.line_id}
+                  value={webContact.line_id.value}
                   className="text-field-custom"
                   fullWidth={true}
                   error={editDataValid.line_id}
                   id="cate-line_id"
                   label="Line ID"
                   size="small"
+                  inputProps={
+                    { readOnly: true, }
+                  }
                 />
                 {/* <TextField
                   onChange={(e) => setEditData({...editData, slug: e.target.value})}

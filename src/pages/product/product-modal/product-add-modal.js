@@ -82,7 +82,8 @@ const url = window.location.origin + "/";
 /* Export Component */
 const ModalAddProduct = (props) => {
   const { t } = useTranslation("product-page");
-  const { isOpen, menuList, category, totalData } = props;
+  const { isOpen, menuList, category, totalData, webContact } = props;
+  console.log(webContact)
   const language = useSelector((state) => state.app.language);
   const isSuperAdmin = useSelector(
     (state) => state.auth.userPermission.superAdmin
@@ -103,7 +104,7 @@ const ModalAddProduct = (props) => {
       setHiddenDate(null);
       setDisplayDate(null);
       setCkValue("");
-      setAddData({ ...addDataDefault, priority: totalData + 1 });
+      setAddData({ ...addDataDefault, priority: totalData + 1, tel: webContact.phone.value, line_id: webContact.line_id.value });
       setAddDataValid(addDataValidDefault);
       setPreviews(thumbnailDefault);
       setMoreImage([]);
@@ -338,7 +339,7 @@ const ModalAddProduct = (props) => {
                   />
 
                   <div className="image-detail">
-                    {/* <TextField
+                    <TextField
                       onChange={(e) =>
                         setAddData((prevState) => {
                           return { ...prevState, thumbnail_name: e.target.value }
@@ -351,7 +352,7 @@ const ModalAddProduct = (props) => {
                       id="image-name"
                       label="Image name"
                       size="small"
-                    /> */}
+                    />
                     <TextField
                       onChange={(e) =>
                         setAddData((prevState) => {
@@ -518,36 +519,30 @@ const ModalAddProduct = (props) => {
                   id="cate-price"
                   label="Price"
                   size="small"
-                  type="number"
                 />
                 <TextField
-                  onChange={(e) =>
-                    setAddData((prevState) => {
-                      return { ...prevState, tel: e.target.value };
-                    })
-                  }
-                  value={addData.tel}
+                  value={webContact.phone.value || ""}
                   className="text-field-custom"
                   fullWidth={true}
                   error={addDataValid.tel}
                   id="cate-tel"
                   label="Tel"
                   size="small"
-                  type="number"
+                  inputProps={
+                    { readOnly: true, }
+                  }
                 />
                 <TextField
-                  onChange={(e) =>
-                    setAddData((prevState) => {
-                      return { ...prevState, line_id: e.target.value };
-                    })
-                  }
-                  value={addData.line_id}
+                  value={webContact.line_id.value || ""}
                   className="text-field-custom"
                   fullWidth={true}
                   error={addDataValid.line_id}
                   id="cate-line_id"
                   label="Line ID"
                   size="small"
+                  inputProps={
+                    { readOnly: true, }
+                  }
                 />
                 {/* <TextField
                   onChange={(e) =>

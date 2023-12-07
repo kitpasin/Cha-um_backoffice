@@ -142,7 +142,6 @@ const ModalEditPost = (props) => {
     }
     const filePath = items.thumbnail_link.split("/");
     setCurImg(filePath[filePath.length - 1]);
-    console.log(items);
   }, [items])
  
 
@@ -415,6 +414,7 @@ const ModalEditPost = (props) => {
                               id={`image-name-${index}`}
                               label={`Image Name ${index + 1}`}
                               size="small"
+                              multiline
                             />
                           )}
                           <TextField
@@ -426,6 +426,7 @@ const ModalEditPost = (props) => {
                               id="image-title"
                               label="Image title"
                               size="small"
+                              multiline
                           />
                           <TextField
                               onChange={(e) => changeMoreImageData(index, {...m, alt: e.target.value})}
@@ -436,6 +437,7 @@ const ModalEditPost = (props) => {
                               id="image-tag"
                               label="Alt description"
                               size="small"
+                              multiline
                           />
                       </div>
                     </div>

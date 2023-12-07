@@ -32,7 +32,7 @@ const tabLists = [
 
 
 const ProductTab = (props) => {
-  const { productModalAdd,setProductModalAdd,menuList, productTab, productData, isRowDisplay, pageControl, category } = props;
+  const { productModalAdd,setProductModalAdd,menuList, productTab, productData, isRowDisplay, pageControl, category, webContact } = props;
   const { t } = useTranslation('product-page')
  
   const isSuerperAdmin = useSelector(state => state.auth.userPermission.superAdmin)
@@ -229,6 +229,7 @@ const ProductTab = (props) => {
 
     {productModalAdd && 
       <ModalAddProduct 
+        webContact={webContact}
         category={category}
         menuList={menuList}
         setRefreshData={props.setRefreshData} 
@@ -237,6 +238,7 @@ const ProductTab = (props) => {
         setClose={setProductModalAdd} /> } 
     {productModalEdit.isOpen && (
       <ModalEditProduct 
+        webContact={webContact}
         items={items}
         category={category}
         menuList={menuList}

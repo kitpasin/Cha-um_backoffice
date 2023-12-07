@@ -72,6 +72,7 @@ const PostPage = () => {
     dispatch(appActions.isSpawnActive(true));
     getPosts(language).then((res) => {
       if (res.status) {
+        console.log(res)
         setPostData(res.data);
       }
       dispatch(appActions.isSpawnActive(false));

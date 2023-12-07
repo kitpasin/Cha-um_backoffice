@@ -42,6 +42,7 @@ const ProductPage = () => {
   const [productModalAdd, setProductModalAdd] = useState(false);
   const [selectedProductName, setSelectedProductName] = useState(undefined);
   const [selectedCateId, setSelectedCateId] = useState(0);
+  const [webContact, setWebcontact] = useState({});
 
   useEffect(() => {
     getMenuList(language).then((res) => {
@@ -68,8 +69,10 @@ const ProductPage = () => {
     setProductData([]);
     dispatch(appActions.isSpawnActive(true));
     getProducts(language).then((res) => {
+      console.log(res)
       if (res.status) {
-        setProductData(res.data);
+        setProductData(res.data.product);
+        setWebcontact(res.data.webInfo);
       }
       dispatch(appActions.isSpawnActive(false));
     });
@@ -165,6 +168,7 @@ const ProductPage = () => {
           setProductTab={setProductTab}
           productData={filteredData}
           isRowDisplay={isRowDisplay}
+          webContact={webContact}
         />
       </div>
     </section>
