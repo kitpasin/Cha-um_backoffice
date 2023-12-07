@@ -25,7 +25,7 @@ const CKeditorComponent = (props) => {
       { name: 'about', items: [ 'About' ] },
 
     ],
-    extraPlugins: "",
+    extraPlugins: "font,justify,pastefromword,colordialog,templates,print,exportpdf,colorbutton,pagebreak,iframe",
     removePlugins: "removeButtons",
     filebrowserUploadUrl : apiPath + urlPath, 
     fileTools_requestHeaders : { 
